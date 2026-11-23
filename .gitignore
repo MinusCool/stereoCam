@@ -1,0 +1,50 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# Local camera settings, calibration photos, and measurement results
+/runtime.json
+/images/
+/snapshots/
+/simulator_output*/
+
+# Keep simulator instructions, but exclude locally supplied photos
+/simulator_images/*
+!/simulator_images/PETUNJUK.txt
+
+# Required model weights and calibration in model/ remain versioned
+
+# Local secrets
+.env
+.env.*
+!.env.example
+.aws/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files and logs
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+~$*

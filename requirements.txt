@@ -1,0 +1,7 @@
+numpy
+Pillow
+customtkinter
+opencv-contrib-python
+ultralytics
+torch-directml
+openpyxl

@@ -1,0 +1,41 @@
+Simpan foto truk yang ingin digunakan di folder ini, misalnya truk.jpg.
+Format yang didukung: JPG, JPEG, PNG, BMP, WEBP.
+
+Jalankan dari folder proyek:
+  .\.venv\Scripts\python.exe camera_simulator.py
+
+Pilih foto, atur jarak, lalu klik "Jalankan main.py".
+Di dropdown kamera pilih:
+  Cam Kiri : Logi C270 Simulator Left (#1)
+  Cam Kanan: Logi C270 Simulator Right (#1)
+
+Kedua kamera hanya tersedia jika main.py dijalankan melalui camera_simulator.py.
+Tidak ada perangkat kamera Windows yang dipasang, dan file kode final tidak diedit.
+main.py tetap menjalankan perilaku aslinya, termasuk menyimpan runtime.json dan
+snapshot ketika fitur tersebut digunakan.
+
+Alternatif perintah langsung (tanpa jendela pengaturan):
+  .\.venv\Scripts\python.exe camera_simulator.py --image simulator_images\truk.jpg --distance 8 --plane-width 6
+
+Hanya pratinjau:
+  .\.venv\Scripts\python.exe camera_simulator.py --image simulator_images\truk.jpg --preview
+
+Ekspor pasangan gambar tanpa membuka main.py:
+  .\.venv\Scripts\python.exe camera_simulator.py --image simulator_images\truk.jpg --export simulator_output --no-launch
+
+Parameter --distance adalah koordinat Z pusat bidang foto dalam sistem koordinat
+kamera kiri asli (meter). --plane-width adalah lebar SELURUH foto dalam meter,
+bukan panjang truk yang sudah diketahui. Ukuran dan jarak adalah asumsi simulasi.
+Default: jarak 8 m, lebar foto 6 m, bidang menghadap kamera kiri.
+--yaw mengatur sudut bidang; --center-x/--center-y mengatur posisi pusat (meter).
+
+Geometri dibaca dari model\stereo_calib_result.npz: intrinsik dan distorsi kedua
+kamera, R dan T. Baseline asli sekitar 44,817 cm. Frame beresolusi 1280x720,
+dialirkan sebagai BGR24 pada target 30 FPS, sesuai pengaturan program asli.
+
+Satu foto tidak berisi geometri 3D sebenarnya. Simulator memproyeksikannya pada
+bidang datar; latar dan kendaraan berada pada bidang yang sama. Bentuk sisi baru,
+occlusion 3D, sifat sensor, auto-exposure, dan sinkronisasi hardware tidak direka.
+Karena itu simulator berguna untuk menguji alur stereo dan aplikasi, tetapi
+tidak membuktikan akurasi pengukuran kendaraan nyata. Koreksi angka yang sudah
+ada dalam main.py tetap berlaku pada hasilnya.
